@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package colors;
+
+service Grouper {
+    rpc Guess (Color) returns (Group) {}
+}
+
+message Color {
+    string hex = 1;
+}
+
+message Group {
+    string group = 1;
+}
