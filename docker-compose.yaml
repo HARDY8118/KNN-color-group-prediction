@@ -8,7 +8,6 @@ services:
       - 9901:9901
       - 9900:9900
       - 8081:8081
-      # - 50051:50051
     volumes:
       - ./envoy/:/etc/envoy/
     
@@ -17,5 +16,7 @@ services:
     build: ./backend
     volumes:
       - ./backend/:/usr/src/app/
+    ports:
+      - 50051:50051
 
 

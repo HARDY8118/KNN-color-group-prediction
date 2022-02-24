@@ -1,6 +1,6 @@
 <script>
-  import { Color, Group } from "../lib/protos/colors_pb";
-  import { GrouperClient } from "../lib/protos/colors_grpc_web_pb";
+  import { Color, Group } from "../lib/colors_pb";
+  import { GrouperClient } from "../lib/colors_grpc_web_pb";
 
   const grouperClient = new GrouperClient("http://0.0.0.0:8081");
 
@@ -9,16 +9,19 @@
 
   function query() {
     const request = new Color();
-    request.setHex(color);
+    request.setHex(hex);
 
     grouperClient.guess(request, {}, (err, res) => {
       if (err) {
+        console.error("Error");
+        console.error(err);
         if (err.code == 2) {
           window.alert("Failed to connect to server");
         } else {
           console.error(err);
         }
       } else {
+        console.log(res);
         guess = res.array[0];
       }
     });
@@ -34,7 +37,9 @@
     <button on:click={query}>Find {hex}</button>
   </section>
   <section>
-    <div>{guess || "Select a color"}</div>
+    <div style="background-color: {guess.toLowerCase()};">
+      {guess || "Select a color"}
+    </div>
   </section>
 </main>
 
@@ -60,7 +65,7 @@
     text-align: center;
   }
 
-  button{
+  button {
     margin: 1em;
     cursor: pointer;
   }
