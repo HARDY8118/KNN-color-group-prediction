@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  envoy:
+    container_name: "envoy-proxy"
+    image: envoyproxy/envoy-dev:e2d2a759793fd1507cedcaf619bbf17cf618ee69
+    ports:
+      - 9901:9901
+      - 9900:9900
+      - 8081:8081
+      # - 50051:50051
+    volumes:
+      - ./envoy/:/etc/envoy/
+    
+  grpc-server:
+    container_name: server
+    build: ./backend
+    volumes:
+      - ./backend/:/usr/src/app/
+
+

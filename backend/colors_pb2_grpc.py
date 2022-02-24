@@ -5,7 +5,7 @@ import grpc
 import colors_pb2 as colors__pb2
 
 
-class GrouperStub():
+class GrouperStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -21,7 +21,7 @@ class GrouperStub():
                 )
 
 
-class GrouperServicer():
+class GrouperServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def Guess(self, request, context):
